@@ -1,0 +1,7 @@
+1 linus torvalds
+2 dennis ritchie
+3 school of linux
+4 dharmapuri
+5 chennai
+6 salem
+7 thiruppur

@@ -1,37 +1,32 @@
-#include <stdio.h>
-#include <signal.h>
 #include <unistd.h>
-#include <string.h>
+#include <signal.h>
+#include <stdio.h>
 #include <stdlib.h>
 
-volatile sig_atomic_t unprocessedsig = 0;
-
-void sighandler()
-{
-   int signo;
-   if( signo == SIGINT)
-   {
-      unprocessedsig = 1;
-   }
-}
-
+void signal_handler (int sig);
+	
 int main()
 {
-   struct sigaction act;
+   	int seconds =0;
 
-   printf("PID : %d\n",getpid());
+	//declaration of structures and zeroing.
+	struct sigaction act;
 
-   if(sigaction( SIGINT, &act, NULL) == -1)
-   {
-      perror("sigaction()");
-   }
+	//sets sig_handler as a new action.
+	act.sa_sigaction = &signal_handler;
 
-   while(1)
-   {
-      if(unprocessedsig)
-      {
-	 unprocessedsig = 0;
-	 printf("SIGINT signal occured\n");
-      }
-   }
+	//Call sigaction()
+	sigaction (2,&act, NULL);
+
+	while (1)
+	{
+	   	printf("School of Linux\n");
+    		sleep(2);
+	}
+}
+
+void signal_handler (int sig)
+{
+     printf("\nSignal received %i\n", sig );
+     exit(-1);
 }

@@ -25,7 +25,14 @@ int main()
 
 void signal_handler (int sig)
 {
-     if()
-     printf("\nSignal received %i\n", sig );
-     exit(-1);
+     if(sig == 2)
+     {
+     	printf("\nSignal received %i\n", sig );
+    	 exit(-1);
+     }
+     else
+     {
+	printf("\nsignal not recived %i\n", sig);
+	exit(-2);
+     }
 }

@@ -7,13 +7,11 @@ void signal_handler (int sig);
 	
 int main()
 {
-   	int seconds =0;
-
-	//declaration of structures and zeroing.
+	//declaration of structures.
 	struct sigaction act;
 
 	//sets sig_handler as a new action.
-	act.sa_sigaction = &signal_handler;
+	act.sa_handler = &signal_handler;
 
 	//Call sigaction()
 	sigaction (2,&act, NULL);
@@ -27,6 +25,7 @@ int main()
 
 void signal_handler (int sig)
 {
+     if()
      printf("\nSignal received %i\n", sig );
      exit(-1);
 }
